@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Visitas</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+<body>
+<div class="container">
+  <h1>Visitas</h1>
+  <table class="highlight">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Local</th>
+      <th>DNI Afiliado</th>
+      <th>Fecha</th>
+      <th>Hora</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="visit : ${visits}">
+      <td th:text="${visit.id}"></td>
+      <td th:text="${visit.local}"></td>
+      <td th:text="${visit.dniAfiliado}"></td>
+      <td th:text="${visit.fecha}"></td>
+      <td th:text="${visit.hora}"></td>
+      <td>
+        <a class="waves-effect waves-light btn-small" th:href="@{/visitas/__${visit.id}__/edit}">Edit</a>
+        <a class="waves-effect waves-light btn-small" th:href="@{/visitas/__${visit.id}__/delete}">Delete</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <br/>
+  <a class="waves-effect waves-light btn" th:href="@{/visitas/new}">Add Visit</a>
+  <p class="red-text" th:text="${errorMessage}"></p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>
