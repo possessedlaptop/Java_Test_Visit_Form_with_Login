@@ -27,9 +27,16 @@ public class VisitService {
         visitRepository.save(visit);
     }
 
-    // para el update en teoria usamos el mismo comando, pero para evitar problemas de lectura usaremos otro metodo
+    // para el update en teoria recibimos el ID y al encontrar el registro, insertamos la nueva informacion mandada
     public void updateVisit(Visit visit) {
-        visitRepository.save(visit);
+        Visit existingVisit = visitRepository.findById(visit.getId()).orElse(null);
+        if (existingVisit != null) {
+            existingVisit.setLocal(visit.getLocal());
+            existingVisit.setDniAfiliado(visit.getDniAfiliado());
+            existingVisit.setFecha(visit.getFecha());
+            existingVisit.setHora(visit.getHora());
+            visitRepository.save(existingVisit);
+        }
     }
 
     // para el DELETE en el controller
